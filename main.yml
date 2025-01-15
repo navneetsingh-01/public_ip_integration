@@ -1,0 +1,6 @@
+---
+- name: Execute Public IP Integration
+  hosts: localhost
+  tasks:
+    - import_role:
+        name: ipam_integration

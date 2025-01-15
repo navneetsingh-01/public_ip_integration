@@ -1,0 +1,56 @@
+---
+- name: Test BTN DNS
+  block:
+    # - name: Test dns lookup - query
+    #   include_role:
+    #     name: btn.dns.query
+    #   vars:
+    #     obj_type: networkview
+    #     host: phx-gridm-ap001.internal.salesforce.com
+    #     username: "{{ lookup('ansible.builtin.env', 'IPAM_USERNAME') }}"
+    #     password: "{{ lookup('ansible.builtin.env', 'IPAM_PASSWORD') }}"
+    
+    # - name: Test dns lookup - query with filters
+    #   include_role:
+    #     name: btn.dns.query
+    #   vars:
+    #     obj_type: networkview
+    #     host: phx-gridm-ap001.internal.salesforce.com
+    #     username: "{{ lookup('ansible.builtin.env', 'IPAM_USERNAME') }}"
+    #     password: "{{ lookup('ansible.builtin.env', 'IPAM_PASSWORD') }}"
+    #     filter: {"name": "PubIPs"}
+
+    # - name: Test dns lookup - query with return fields
+    #   include_role:
+    #     name: btn.dns.query
+    #   vars:
+    #     obj_type: record:host
+    #     host: phx-gridm-ap001.internal.salesforce.com
+    #     username: "{{ lookup('ansible.builtin.env', 'IPAM_USERNAME') }}"
+    #     password: "{{ lookup('ansible.builtin.env', 'IPAM_PASSWORD') }}"
+    #     filter: {"name": "iad1-sdw-b"}
+    #     return_fields: ['name']
+    
+    # - name: Post a network in a network view object
+    #   include_role:
+    #     name: btn.dns.post
+    #   vars:
+    #     obj_type: network
+    #     host: phx-gridm-ap001.internal.salesforce.com
+    #     username: "{{ lookup('ansible.builtin.env', 'IPAM_USERNAME') }}"
+    #     password: "{{ lookup('ansible.builtin.env', 'IPAM_PASSWORD') }}"
+    #     network: "{{ '125.20.13.18/29' | ansible.utils.ipaddr('network/prefix') }}"
+    #     network_view: "PubIPs"
+    #     state: present
+        
+    - name: Update a Host Record
+      include_role:
+        name: btn.dns.post
+      vars:
+        obj_type: host_record
+        host: phx-gridm-ap001.internal.salesforce.com
+        username: "{{ lookup('ansible.builtin.env', 'IPAM_USERNAME') }}"
+        password: "{{ lookup('ansible.builtin.env', 'IPAM_PASSWORD') }}"
+        ip: "125.20.13.18"
+        name: "testname"
+        state: present
