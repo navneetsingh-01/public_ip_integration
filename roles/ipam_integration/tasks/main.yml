@@ -1,56 +1,23 @@
 ---
-- name: Test BTN DNS
+- name: Cloudgenix IPAM Setup
   block:
-    # - name: Test dns lookup - query
-    #   include_role:
-    #     name: btn.dns.query
-    #   vars:
-    #     obj_type: networkview
-    #     host: phx-gridm-ap001.internal.salesforce.com
-    #     username: "{{ lookup('ansible.builtin.env', 'IPAM_USERNAME') }}"
-    #     password: "{{ lookup('ansible.builtin.env', 'IPAM_PASSWORD') }}"
-    
-    # - name: Test dns lookup - query with filters
-    #   include_role:
-    #     name: btn.dns.query
-    #   vars:
-    #     obj_type: networkview
-    #     host: phx-gridm-ap001.internal.salesforce.com
-    #     username: "{{ lookup('ansible.builtin.env', 'IPAM_USERNAME') }}"
-    #     password: "{{ lookup('ansible.builtin.env', 'IPAM_PASSWORD') }}"
-    #     filter: {"name": "PubIPs"}
+    - name: Get public IPs from cloudgenix
+      btn.cloudgenix.public_ips:
+        token: "{{ lookup('ansible.builtin.env', 'CLOUDGENIX_TOKEN') }}"
+      register: result
+      
+    - set_fact:
+        public_ips: "{{ result['output'] }}"
 
-    # - name: Test dns lookup - query with return fields
-    #   include_role:
-    #     name: btn.dns.query
-    #   vars:
-    #     obj_type: record:host
-    #     host: phx-gridm-ap001.internal.salesforce.com
-    #     username: "{{ lookup('ansible.builtin.env', 'IPAM_USERNAME') }}"
-    #     password: "{{ lookup('ansible.builtin.env', 'IPAM_PASSWORD') }}"
-    #     filter: {"name": "iad1-sdw-b"}
-    #     return_fields: ['name']
-    
-    # - name: Post a network in a network view object
-    #   include_role:
-    #     name: btn.dns.post
-    #   vars:
-    #     obj_type: network
-    #     host: phx-gridm-ap001.internal.salesforce.com
-    #     username: "{{ lookup('ansible.builtin.env', 'IPAM_USERNAME') }}"
-    #     password: "{{ lookup('ansible.builtin.env', 'IPAM_PASSWORD') }}"
-    #     network: "{{ '125.20.13.18/29' | ansible.utils.ipaddr('network/prefix') }}"
-    #     network_view: "PubIPs"
-    #     state: present
-        
-    - name: Update a Host Record
+    - name: Loop over the result and create/update required networks
       include_role:
         name: btn.dns.post
       vars:
-        obj_type: host_record
+        obj_type: network
         host: phx-gridm-ap001.internal.salesforce.com
         username: "{{ lookup('ansible.builtin.env', 'IPAM_USERNAME') }}"
         password: "{{ lookup('ansible.builtin.env', 'IPAM_PASSWORD') }}"
-        ip: "125.20.13.18"
-        name: "testname"
+        network: "{{ item['network'] | ansible.utils.ipaddr('network/prefix') }}"
+        network_view: "PubIPs"
         state: present
+      loop: "{{ public_ips }}"
