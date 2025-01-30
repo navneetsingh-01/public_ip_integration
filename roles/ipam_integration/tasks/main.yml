@@ -1,5 +1,8 @@
 ---
 - name: Cloudgenix IPAM Setup
+  collections:
+    - name: btn.cloudgenix
+    - name: btn.dns
   block:
     - name: Get public IPs from cloudgenix
       btn.cloudgenix.public_ips:
