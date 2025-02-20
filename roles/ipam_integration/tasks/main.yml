@@ -32,10 +32,12 @@
 #       include_tasks: create_subnet.yml 
 #       vars:
 #         item: "{{ item }}"
+#         source: "cloudgenix" 
 #       loop: "{{ public_ips }}"
 
 #     - name: Loop over the result and create IPV4 reservations
 #       include_tasks: create_reservation.yml 
 #       vars:
 #         item: "{{ item }}"
+#         source: "cloudgenix" 
 #       loop: "{{ public_ips }}"
