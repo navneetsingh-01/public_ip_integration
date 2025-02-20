@@ -1,7 +1,9 @@
 ---
 - name: Firewalls IPAM Setup
   block:
-    - debug: msg="{{ get_fw_ips }}"
+    - set_fact: 
+        dummy: "some_dummy_fact"
+    - debug: msg="{{ dummy | get_fw_ips }}"
       register: output
 
 # - name: Cloudgenix IPAM Setup
