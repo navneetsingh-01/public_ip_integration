@@ -1,7 +1,7 @@
 import requests
 from pprint import pprint
 
-token = "LUFRPT1TSTUzc05WRGhUTVpuV0tmOGc5VVRmdGZsU289bXR6YWZmc2FPS1JxeUVaQ0tPTlhaQWVycEU5Vi9OYTc5a1FtRXBkQkpJbWxveDlsc29vbGEzMVNsWElqV3NyWVZ3RUZCVTBqVUhmTW5YdUQ5NVFoYnc9PQ=="
+token = ""
 VIRTUAL_SYSTEMS = ["vsys2", "vsys5", "vsys7", "vsys9", "vsys10", "vsys11", "vsys13"]
 meta_data = [
     {
