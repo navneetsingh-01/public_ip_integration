@@ -7,11 +7,14 @@
     - debug: msg="{{ dummy | get_fw_ips }}"
       register: result
 
+    - set_fact:
+        public_ips: "{{ result['msg'] }}"
+
     - debug: msg="{{ item }}"
       # include_tasks: create_subnet.yml 
       # vars:
       #   item: "{{ item }}"
-      loop: "{{ result }}"
+      loop: "{{ public_ips }}"
 
 
 # - name: Cloudgenix IPAM Setup
