@@ -17,7 +17,7 @@
   rescue:
     - debug:
         msg: "Error occured for network - {{ item['network'] | ansible.utils.ipaddr('network/prefix') }}" 
-  when: source == cloudgenix
+  when: source == 'cloudgenix'
 
 - block: 
   - debug: msg="testing firewalls"
@@ -39,4 +39,4 @@
   # rescue:
   #   - debug:
   #       msg: "Error occured for network - {{ item['network'] | ansible.utils.ipaddr('network/prefix') }}" 
-  when: source == firewalls
+  when: source == 'firewalls'
