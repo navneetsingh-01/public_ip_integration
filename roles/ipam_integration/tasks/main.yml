@@ -3,8 +3,16 @@
   block:
     - set_fact: 
         dummy: "some_dummy_fact"
+
     - debug: msg="{{ dummy | get_fw_ips }}"
-      register: output
+      register: result
+
+    - debug: msg="{{ item }}"
+      # include_tasks: create_subnet.yml 
+      # vars:
+      #   item: "{{ item }}"
+      loop: "{{ result }}"
+
 
 # - name: Cloudgenix IPAM Setup
 #   block:
