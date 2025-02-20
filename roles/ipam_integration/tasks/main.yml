@@ -10,10 +10,11 @@
     - set_fact:
         public_ips: "{{ result['msg'] }}"
 
-    - debug: msg="{{ item }}"
-      # include_tasks: create_subnet.yml 
-      # vars:
-      #   item: "{{ item }}"
+    - name: Loop over the result and create/update required networks
+      include_tasks: create_subnet.yml 
+      vars:
+        item: "{{ item }}"
+        source: "firewalls" 
       loop: "{{ public_ips }}"
 
 
