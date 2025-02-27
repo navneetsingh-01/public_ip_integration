@@ -1,7 +1,10 @@
+import os
 import requests
 from pprint import pprint
+from dotenv import load_dotenv
+load_dotenv()
 
-token = ""
+token = os.getenv("TOKEN")
 VIRTUAL_SYSTEMS = ["vsys2", "vsys5", "vsys7", "vsys9", "vsys10", "vsys11", "vsys13"]
 meta_data = [
     {
