@@ -1,0 +1,8 @@
+ansible
+ansible-core
+ansible-runner
+ansible-pylibssh
+hvac
+paramiko
+jmespath
+python-dotenv

@@ -1,0 +1,19 @@
+---
+- name: Get Required Interfaces
+  nxos_command:
+    commands:
+      - show ip int br vrf all | ex 10.
+  register: output
+
+- debug: msg="{{ output['stdout_lines'][0] | get_interfaces }}"
+  register: interfaces
+
+- set_fact:
+    public_ips: []
+
+- name: Get required IPs
+  include_tasks: utils.yaml
+  vars: 
+    interface: "{{item}}"
+  loop: "{{ interfaces['msg'] }}"
+

@@ -1,0 +1,18 @@
+---
+- nxos_command:
+    commands:
+      - sh run int {{ interface }} | in /
+  register: output
+
+- debug: msg="{{ output['stdout_lines'][0] | get_info }}"
+  register: ip_info
+
+- set_fact:
+    ip_info: "{{ ip_info['msg'] | combine ({ 'device' : inventory_hostname })  }}"
+
+- set_fact:
+    ip_info: "{{ ip_info | combine ({ 'interface' : interface })  }}"
+
+- set_fact:
+    public_ips: "{{ public_ips + [ip_info] }}"
+

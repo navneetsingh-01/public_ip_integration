@@ -1,0 +1,5 @@
+---
+- name: Fetch required IPs
+  include_tasks: fetch_ips.yaml
+
+- debug: msg="{{ public_ips }}"
