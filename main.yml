@@ -1,6 +1,6 @@
 ---
-- name: Execute Public IP Integration
+- name: Firewalls
   hosts: localhost
   tasks:
     - import_role:
-        name: ipam_integration
+        name: firewalls

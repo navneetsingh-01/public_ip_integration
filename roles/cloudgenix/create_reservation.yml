@@ -1,0 +1,17 @@
+- include_role:
+    name: btn.dns.post
+  vars:
+    obj_type: b1_ipam_ipv4_reservation
+    host: https://csp.infoblox.com
+    api_key: "{{ lookup('ansible.builtin.env', 'CSP_API_KEY') }}"
+    space: "Public IP"
+    address: "{{ item['network'].split('/')[0] }}"
+    name: "{{ item['site_name'] }} - {{ item['device'] }}"
+    comment: "Interface: {{ item['interface_name'] }}"
+    tags:
+      - "ResourceAssignment": "WANInterface"
+      - "ResourceUseCase": "SD-WAN"
+    state: present
+rescue:
+  - debug:
+      msg: "Error occured for network - {{ item['network'] }}" 

@@ -1,0 +1,24 @@
+---
+- name: Cloudgenix IPAM Setup
+  block:
+    - name: Get public IPs from cloudgenix
+      btn.cloudgenix.public_ips:
+        token: "{{ lookup('ansible.builtin.env', 'CLOUDGENIX_TOKEN') }}"
+      register: result
+
+    - set_fact:
+        public_ips: "{{ result['output'] }}"
+
+    - name: Loop over the result and create/update required networks
+      include_tasks: create_subnet.yml 
+      vars:
+        item: "{{ item }}"
+        source: "cloudgenix" 
+      loop: "{{ public_ips }}"
+
+    - name: Loop over the result and create IPV4 reservations
+      include_tasks: create_reservation.yml 
+      vars:
+        item: "{{ item }}"
+        source: "cloudgenix" 
+      loop: "{{ public_ips }}"
