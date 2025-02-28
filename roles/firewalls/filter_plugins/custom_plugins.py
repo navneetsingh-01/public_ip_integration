@@ -108,7 +108,6 @@ class FilterModule(object):
                         }
                         response = requests.get(URL + path, headers=headers,
                                             params=params, verify=False)      
-                        print(response.content)
                         if response.status_code == 200:
                             response=response.json()      
                             populate(result, response, network)
