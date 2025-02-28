@@ -1,4 +1,10 @@
 ---
+# - name: Cloudgenix
+#   hosts: localhost
+#   tasks:
+#     - import_role:
+#         name: cloudgenix
+
 - name: Firewalls
   hosts: localhost
   tasks:
