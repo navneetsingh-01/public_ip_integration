@@ -1,9 +1,9 @@
 ---
-- name: Firewalls
-  hosts: localhost
-  tasks:
-    - import_role:
-        name: firewalls
+# - name: Firewalls
+#   hosts: localhost
+#   tasks:
+#     - import_role:
+#         name: firewalls
 
 - name: DMZs
   hosts: dmz
