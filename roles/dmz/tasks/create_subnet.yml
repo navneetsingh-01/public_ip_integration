@@ -1,6 +1,5 @@
 
-- name: Creating/Updating subnet
-  include_role:
+- include_role:
     name: btn.dns.post
   vars:
     obj_type: b1_ipam_subnet
@@ -15,6 +14,6 @@
       - "ResourceUseCase": "DMZ"
       - "ResourceOrigin": "DirectAccess"
     state: present
-  rescue:
-    - debug:
-        msg: "Error occured for network - {{ info['network'] | ansible.utils.ipaddr('network/prefix') }}" 
+rescue:
+  - debug:
+      msg: "Error occured for network - {{ info['network'] | ansible.utils.ipaddr('network/prefix') }}" 
