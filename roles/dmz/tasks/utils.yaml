@@ -11,7 +11,7 @@
     ip_info: "{{ ip_info['msg'] | combine ({ 'device' : inventory_hostname })  }}"
 
 - set_fact:
-    ip_info: "{{ ip_info | combine ({ 'site_name' : inventory_hostname.split('-')[0] })  }}"
+    ip_info: "{{ ip_info | combine ({ 'site_name' : inventory_hostname.split('-')[0] | upper })  }}"
 
 - set_fact:
     ip_info: "{{ ip_info | combine ({ 'interface' : interface })  }}"
