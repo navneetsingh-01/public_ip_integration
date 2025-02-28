@@ -7,8 +7,8 @@
       api_key: "{{ lookup('ansible.builtin.env', 'CSP_API_KEY') }}"
       space: "Public IP"
       address: "{{ info['ip'] }}"
-      name: "{{ info['site_name'] }} - {{ info['device'] }}"
-      comment: "Interface: {{ info['interface_name'] }}"
+      name: "{{ info['site'] }} - {{ info['device'] }}"
+      comment: "Interface: {{ info['interface'] }}"
       tags:
         - "ResourceAssignment": "Interface"
         - "ResourceUseCase": "DMZ"

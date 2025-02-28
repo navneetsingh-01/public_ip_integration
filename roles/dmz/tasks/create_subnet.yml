@@ -8,7 +8,7 @@
       space: "Public IP"
       address: "{{ info['network'] | ansible.utils.ipaddr('network/prefix') }}"
       name: ""
-      comment: "{{ info['site_name'] }}"
+      comment: "{{ info['site'] }}"
       tags:
         - "ResourceType": "PublicIPRange"
         - "ResourceUseCase": "DMZ"
