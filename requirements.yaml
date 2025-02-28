@@ -1,0 +1,6 @@
+---
+collections:
+  - name: BTN DNS 
+    source: git@github.com:sf-bt-neteng-emu/ansible-collection-btn-dns.git
+  - name: NIOS 
+    source: git+https://github.com/infobloxopen/bloxone-ansible#ansible_collections/infoblox/b1ddi_modules
