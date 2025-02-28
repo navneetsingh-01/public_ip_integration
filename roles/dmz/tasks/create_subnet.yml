@@ -14,6 +14,6 @@
       - "ResourceUseCase": "DMZ"
       - "ResourceOrigin": "DirectAccess"
     state: present
-rescue:
-  - debug:
-      msg: "Error occured for network - {{ info['network'] | ansible.utils.ipaddr('network/prefix') }}" 
+  rescue:
+    - debug:
+        msg: "Error occured for network - {{ info['network'] | ansible.utils.ipaddr('network/prefix') }}" 
