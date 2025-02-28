@@ -35,7 +35,7 @@ def populate(result, response, network, URL):
             'vsys': item['@vsys'], 
             'description': item['description'] if 'description' in item else '',
             'device': device, 
-            'site': location
+            'location': location
         }
         
         if 'destination' in item and 'member' in item['destination']:
