@@ -1,5 +1,5 @@
 
-- include_role:
+- ansible.builtin.include_role:
     name: btn.dns.post
   vars:
     obj_type: b1_ipam_subnet
