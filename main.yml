@@ -11,10 +11,10 @@
     - import_role:
         name: firewalls
 
-- name: DMZs
-  hosts: dmz
-  gather_facts: false
-  strategy: free
-  tasks:
-    - import_role:
-        name: dmz
+# - name: DMZs
+#   hosts: dmz
+#   gather_facts: false
+#   strategy: free
+#   tasks:
+#     - import_role:
+#         name: dmz
