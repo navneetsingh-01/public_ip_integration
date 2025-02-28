@@ -6,3 +6,4 @@ hvac
 paramiko
 jmespath
 python-dotenv
+netaddr
