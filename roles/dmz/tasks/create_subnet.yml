@@ -1,4 +1,6 @@
-- include_role:
+
+- name: Creating/Updating subnet
+  include_role:
     name: btn.dns.post
   vars:
     obj_type: b1_ipam_subnet
