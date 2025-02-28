@@ -24,14 +24,16 @@ def isRequiredIP(ip, network):
     network_vals = network.split('.')
     return ip_vals[0] == network_vals[0]
 
-def populate(result, response, network):
+def populate(result, response, network, URL):
     if 'entry' not in response['result']: 
         return 
+    device = URL.split('//')[1]
     for item in response['result']['entry']:
         basic = {
             'name': item['@name'],
             'vsys': item['@vsys'], 
-            'description': item['description'] if 'description' in item else ''
+            'description': item['description'] if 'description' in item else '',
+            'device': device
         }
         
         if 'destination' in item and 'member' in item['destination']:
@@ -110,7 +112,7 @@ class FilterModule(object):
                                             params=params, verify=False)      
                         if response.status_code == 200:
                             response=response.json()      
-                            populate(result, response, network)
+                            populate(result, response, network, URL)
 
             return result
         except Exception as e:
