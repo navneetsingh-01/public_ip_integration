@@ -28,14 +28,14 @@ def populate(result, response, network, URL):
     if 'entry' not in response['result']: 
         return 
     device = URL.split('//')[1]
-    site = device.split('-')[0].upper()
+    location = device.split('-')[0].upper()
     for item in response['result']['entry']:
         basic = {
             'name': item['@name'],
             'vsys': item['@vsys'], 
             'description': item['description'] if 'description' in item else '',
             'device': device, 
-            'site': site
+            'site': location
         }
         
         if 'destination' in item and 'member' in item['destination']:
