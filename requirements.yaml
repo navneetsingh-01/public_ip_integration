@@ -1,7 +1,8 @@
 ---
 collections:
-  - name: BTN DNS 
-    source: git@github.com:sf-bt-neteng-emu/ansible-collection-btn-dns.git
+  - name: git@github.com:sf-bt-neteng-emu/ansible-collection-btn-dns.git
+    type: git
+    version: main
   - name: git@github.com:infobloxopen/bloxone-ansible.git#ansible_collections/infoblox/b1ddi_modules
     type: git
     version: main
