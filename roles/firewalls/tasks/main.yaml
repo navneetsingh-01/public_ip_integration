@@ -13,6 +13,6 @@
     - name: Loop over the result and create/update required networks
       include_tasks: create_subnet.yml 
       vars:
-        item: "{{ item }}"
+        info: "{{ item }}"
         source: "firewalls" 
       loop: "{{ public_ips }}"

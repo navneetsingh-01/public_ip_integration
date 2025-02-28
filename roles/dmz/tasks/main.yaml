@@ -1,5 +1,14 @@
 ---
-- name: Fetch required IPs
-  include_tasks: fetch_ips.yaml
+- name: DMZ IPAM Setup
+  block:
+  - name: Fetch required IPs
+    include_tasks: fetch_ips.yaml
 
-- debug: msg="{{ public_ips }}"
+  - debug: msg="{{ public_ips }}"
+
+  - name: Loop over the result and create/update required networks
+    include_tasks: create_subnet.yml 
+    vars:
+      info: "{{ item }}"
+      source: "dmz" 
+    loop: "{{ public_ips }}"
